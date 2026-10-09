@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@theme {
+  --font-sans: "Montserrat Variable", sans-serif;
+}
+:root {
+  color-scheme: light;
+}
+body {
+  margin: 0;
+  background: #f5f6fa;
+  color: #202435;
+  font-family: "Montserrat Variable", sans-serif;
+}
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  background: white;
+  border: 1px solid #dde0eb;
+  border-radius: 9px;
+  padding: 12px;
+  margin-top: 7px;
+}
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+}
+input[type="checkbox"] {
+  display: inline;
+  width: auto;
+  margin-right: 8px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #6855d9;
+  color: white;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 18px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.btn.secondary {
+  background: white;
+  color: #514c6e;
+  border: 1px solid #ddddeb;
+}
+.card {
+  background: white;
+  border: 1px solid #e4e5ef;
+  border-radius: 16px;
+  padding: 24px;
+}
+.muted {
+  color: #84869c;
+}
+.eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #858399;
+}
