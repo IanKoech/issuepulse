@@ -1,0 +1,28 @@
+name: Scheduled monitor checks
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: issuepulse-monitor-checks
+  cancel-in-progress: false
+jobs:
+  check:
+    if: ${{ vars.ISSUEPULSE_URL != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check due monitors
+        env:
+          ISSUEPULSE_URL: ${{ vars.ISSUEPULSE_URL }}
+          CRON_SECRET: ${{ secrets.ISSUEPULSE_CRON_SECRET }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo 'Missing ISSUEPULSE_CRON_SECRET repository secret.'
+            exit 1
+          fi
+          curl --fail-with-body --silent --show-error --max-time 190 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$ISSUEPULSE_URL/api/jobs/checks"

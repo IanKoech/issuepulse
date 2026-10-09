@@ -67,3 +67,7 @@ See [architecture notes](docs/architecture.md). This is a portfolio release rath
 ## Screenshots
 
 Desktop and mobile captures are in [docs/screenshots](docs/screenshots). Run `npm run preview:shots` against the seeded local app to refresh them. Install Playwright Chromium (`npx playwright install chromium`) or set `PLAYWRIGHT_BROWSER_PATH` to a supported local browser executable. Browser checks exercise owner/member visibility, dashboard tabs, public privacy, font, and mobile overflow.
+
+### Free demo scheduler
+
+The `Scheduled monitor checks` GitHub workflow runs about every 15 minutes, with manual dispatch available. Set the repository variable `ISSUEPULSE_URL` to the production HTTPS origin and repository secret `ISSUEPULSE_CRON_SECRET` to the same value as Vercel’s `CRON_SECRET`. This cadence gives the free database idle time between batches. The worker checks due monitors; intervals shorter than the scheduler cadence do not result in more frequent checks. GitHub schedules can be delayed, and public-repository schedules are disabled after 60 days without repository activity. This is suitable for the portfolio demo, not a precise availability SLA. See [GitHub scheduling documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
